@@ -137,19 +137,79 @@ function anadiendoItems(itemsArray){
 
 
 /* =================== agregar al carrito =================== */
-const cart = []
+
+
+
 
 function añadiendoCar() {
     const btnsCar = document.querySelectorAll(".products__button") // node list
+    const carInfoVacio = document.querySelector(".cart__info")
+    const cart = []
+
     btnsCar.forEach( button => {
     button.addEventListener("click", e =>{
+        /*== añadiendo producto al carrito ==*/
         const itemId = parseInt(e.target.parentElement.id)
         const selectedProducts = items.find( item => item.id === itemId )
-        cart.push(selectedProducts)
+        selectedProducts.cantidad = 0
+        console.log(selectedProducts)
+        
+
+        selectedProducts.forEach( car =>{
+                if (car.cantidad) {
+                    car.cantidad += 1
+                }else{
+                    car.cantidad = 1
+                } 
+            })
+            
+            cart.push(selectedProducts)
+
+        /*==eliminando la imagen de carrito vacio==*/
+        carInfoVacio.classList.add("hide")
+        /*=========================================*/
         console.log(cart)
+
+
     })
+    
+
 })
 }
 /* ====================================================================*/
 
 
+const x = 
+[
+  { name: 'Georg', email: 'georg@academlo.com', country_id: 1 },
+  { name: 'Andrea', email: 'andrea@gmail.com', country_id: 2 },
+  { name: 'Daniela', email: 'daniela@gmail.com', country_id: 2 },
+  { name: 'Mónica', email: 'monica@gmail.com', country_id: 2 }
+]
+
+const a =
+[
+  { id: 1, name: 'Mexico', },
+  { id: 2, name: 'Colombia' }
+]
+
+function countStudents(students, countries, countryName) {
+    let paisRequerido = null
+    for(let j = 0; j < countries.length; j++){
+        if(countryName === countries[j].name){
+            paisRequerido = countries[j].id
+            break
+        }
+    }
+    const contador = {}
+    for(let i = 0; i < students.length; i++){
+        students[i].country_id
+        if(contador[students[i].country_id]){
+            contador[students[i].country_id] += 1
+        }else{
+            contador[students[i].country_id] = 1
+    }
+}
+    return contador[paisRequerido]
+}
+console.log(countStudents(x, a, "Colombia"))

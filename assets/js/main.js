@@ -136,8 +136,6 @@ function anadiendoItems(itemsArray){
 
 
 
-/* =================== agregar al carrito =================== */
-
 
 
 
@@ -148,23 +146,72 @@ function añadiendoCar() {
 
     btnsCar.forEach( button => {
     button.addEventListener("click", e =>{
-        /*== añadiendo producto al carrito ==*/
+/*================ añadiendo producto al carrito ======¡¡¡========*/
         const itemId = parseInt(e.target.parentElement.id)
         const selectedProducts = items.find( item => item.id === itemId )
-        selectedProducts.cantidad = 0
-        console.log(selectedProducts)
-            cart.push(selectedProducts)
-
-        /*==eliminando la imagen de carrito vacio==*/
-        carInfoVacio.classList.add("hide")
-        /*=========================================*/
-        console.log(cart)
+            console.log(selectedProducts)
 
 
-    })
+            if (cart.includes(selectedProducts) === false) {
+                selectedProducts.cantidad = 1
+                selectedProducts.SubPrice = selectedProducts.price
+                cart.push(selectedProducts)
+                cartDeProductos(cart)
+            }else if(cart.includes(selectedProducts) === true){
+                selectedProducts.cantidad += 1
+                selectedProducts.SubPrice += selectedProducts.price
+                cartDeProductos(cart)
+            }
+            console.log(cart)
+
+
+function cartDeProductos(carArray) {
+    const cartProductContainer = document.querySelector(".car__container")
+            let fragmentHTML = ``
+            carArray.map( cartProduct =>{
+                fragmentHTML += `<div class="cart__product">
+                <div class="cart--product__img">
+                <img class="cart__img" src=" ${cartProduct.image} " alt="${cartProduct.name}">
+                </div>
+                <div cart__detalles>
+                <h3 class="cart--detalles__tittle">${cartProduct.name}</h3>
+                <span class="cart--detalles__stock">existencias: ${cartProduct.quantity} | <span class="cart--detalles__precio">${cartProduct.price}</span>
+                </span>
+                <span class="cart--detalles__subtotal">subtotal: ${cartProduct.SubPrice}</span>
+                <div class="cart__amount">
+                    <div class="cart__amount-content">
+                    <span class="cart__amount__box">
+                    <i class="bx bx-minus"></i>
+                    </span>
+                    <span class="cart__amount-number"> ${cartProduct.cantidad} unidades</span>
+        
+                    <span class="cart__amount__box">
+                    <i class="bx bx-plus"></i>
+                    </span>
+                    </div>
+                    <i class="bx bx-trash-alt cart__amount-trash"></i>
+                </div>
+                </div>
+            </div>`
+            })
+            cartProductContainer.innerHTML = fragmentHTML
+        }
+
+
+/*================================suma de  precios=============================*/
     
 
-})
+
+
+
+/*=====================eliminando la imagen de carrito vacio================*/
+        carInfoVacio.classList.add("hide")
+
+
+
+
+        })
+    })
 }
 /* ====================================================================*/
 

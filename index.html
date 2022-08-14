@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Academlo Store</title>
+    <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
+    
+    <link rel="stylesheet" href="./assets/css/style.css">
+</head>
+<body>
+    <div id="loader" class="loader">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48.92 56.48" class="loader--img">
+          <title>Academlo Logo</title>
+          <g>
+              <g>
+                  <path
+                  d="M24.45,56.48,0,42.36V14.12L24.46,0,48.92,14.12V42.36ZM1.89,41.26l22.56,13L47,41.26v-26l-22.56-13-22.56,13Z">
+                  </path>
+                  <path
+                  d="M28.58,15.39H25.16L35.78,36H31.49L20.67,15.71,8.23,38.82H18.94l3-5.43h-3.4l-1.47,2.54h-4l2.69-5.09H25.85l4.28,8H40.67ZM17.23,28.21l3.57-6.6,3.57,6.6Z">
+                  </path>
+              </g>
+          </g>
+      </svg>
+    </div>
+    <!-------------header-------------->
+    <header class="header" id="header">
+      <nav class="nav container">
+        <a href="#" class="nav--logo">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48.92 56.48">
+              <title>Academlo Logo</title>
+              <g>
+                <g>
+                  <path
+                    d="M28.58,15.39H25.16L35.78,36H31.49L20.67,15.71,8.23,38.82H18.94l3-5.43h-3.4l-1.47,2.54h-4l2.69-5.09H25.85l4.28,8H40.67ZM17.23,28.21l3.57-6.6,3.57,6.6Z">
+                  </path>
+                </g>
+              </g>
+          </svg>
+        </a>
+        <div class="nav--menu">
+          <ul class="nav--list"> 
+            <li class="nav--item">
+              <a href="#home"  id="menu-home" class="nav--link active--link">
+                Home
+              </a>
+            </li>
+            <li class="nav--item">
+              <a href="#products" id="menu-Products"  class="nav--link">
+                Products
+              </a>
+            </li>
+          </ul>
+          <div class="nav--close" id="close--nav">
+            <i class='bx bx-x'></i>
+          </div>
+        </div>
+        <div class="nav--btns" id="nav--btns">
+          <i class='bx bx-moon change-theme' id="theme-button"></i>
+
+          <div class="nav--cart" id="cart-shop">
+            <i class='bx bx-shopping-bag'></i>
+            <span id="cart-counter" class="counter"> 0 </span>
+          </div>
+
+          <div class="nav--toggle" id="nav-toggle">
+            <i class='bx bx-grid-alt'></i>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <!-------------car-------------->
+    <div class="cart--container" id="cart-container">
+      <di class="cart" id="cart">
+        <div class="nav--close" id="close-cart">
+          <i class='bx bx-x'></i>
+        </div>
+        <h2 class="car__tittle">My Cart</h2>
+        <div class="car__container">
+          <div class="cart__info" >
+            <img src="./assets/images/empty-cart.png" alt="carrito vacio">
+            <h2>Your cart is empty</h2>
+            <p>You can add items to your cart by clicking on the "+" button on the product page.</p>
+          </div>
+          <div class="cart__price">
+            <p class="cart--precio__item">
+              <span id="item__cout">0</span>
+              items
+            </p>
+            <p class="precio__total" id="cart__total">$0.00</p>
+          </div>
+          <div class="car__verific">
+            <button class="button cart__btn">
+              <i class="bx bxs-check-shield"></i>
+              checkout
+            </button>
+          </div>
+        </div>
+      </di>
+    </div>
+    <!-------------main-------------->
+      <main class="main">
+        <!-------------home-------------->
+        <section class="home container" id="home">
+          <div class="home--container grid">
+            <div class="home--img-bg">
+              <img class="home--img" src="./assets/images/home.png" alt="">
+            </div>
+            <div class="home--data">
+              <h1 class="home__tittle">New Sweatshirt <br>
+                COLLECTIONS 2022</h1>
+                <p class="home__info" >Latest arrival of the new Hanes Midweight Crewneck sweatshirt imported
+                from the 2022 series, with a modern design</p>
+                <p class="home__price">$14.00</p>
+                <div class="home__btns">
+                  <a class="btn--discover button" href="#">Discover</a>
+                  <button class="btn--add button">ADD TO CART</button>
+                </div>
+            </div>
+          </div> 
+        </section>
+        <!-------------products-------------->
+        <section class="products" id="products">
+          <div class="products__container container">
+            <ul class="products__filters" >
+              <li id="filterAll" class="products__item line__products">
+                <h3 class="products__tittle">show All</h3>
+                <span class="products__stock">show all products</span>
+                </li>
+                <li id="Hoodies" class="products__item line__products">
+                <h3 class="products__tittle">hoodies</h3>
+                <span class="products__stock">3 products</span>
+                </li>
+                <li id="Shirts" class="products__item line__products">
+                <h3 class="products__tittle">shirts</h3>
+                <span class="products__stock">4 products</span>
+                </li>
+                <li id="Sweatshirts" class="products__item">
+                <h3 class="products__tittle">Sweatshirts</h3>
+                <span class="products__stock">4 products</span>
+                </li>
+          </ul>
+          </div>
+          <div class="products__content grid">
+          </div>
+        </section>
+      </main>
+    <script src="./assets/js/main.js"></script>
+</body>
+</html>

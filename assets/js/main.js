@@ -153,6 +153,15 @@ function añadiendoCar() {
         const selectedProducts = items.find( item => item.id === itemId )
 
 
+
+
+
+
+
+
+
+
+
             if (cart.includes(selectedProducts) === false) {
                 selectedProducts.cantidad = 1
                 selectedProducts.SubPrice = selectedProducts.price
@@ -161,7 +170,9 @@ function añadiendoCar() {
                 selectedProducts.cantidad += 1
                 selectedProducts.SubPrice += selectedProducts.price
             }
-            console.log(cart)
+
+
+
 // ============================total DE productos =============================== //
 const itemCount = document.getElementById("item__cout")
 const itemCount2 = document.getElementById("cart-counter")
@@ -173,17 +184,12 @@ const precioTotal = document.getElementById("cart__total")
 const totalPrecio = cart.map( Product => Product.SubPrice ).reduce((previousValue,currentValue)=> previousValue + currentValue,0) 
 precioTotal.textContent = totalPrecio
 // ===========================================================================//
-
-
-
-
-
-
-
+// ========================= ELIMINANDO TODOS LOS ELEMENTOS ==================//
 
 
 
 //================ cart con los productos =============================//
+
 function cartDeProductos(carArray) {
     let fragmentHTML = ``
     carArray.forEach( cartProduct  =>{
@@ -212,22 +218,24 @@ function cartDeProductos(carArray) {
     </article>`
     })
     cartProductContainer.innerHTML = fragmentHTML
+        
         }
         cartDeProductos(cart)
-        })
-    })
+
+
+
+
+
+        }) // fin del addEvent
+
+
+
+
+    })  // fin del forEach
+    
 
 }
 
+
+
 /* ====================================================================*/
-
-fruits = [
-    {  description: 'orange', Amount: 50},
-    {  description: 'orange', Amount: 50},
-    {  description: 'apple', Amount: 75},
-    {  description: 'kiwi', Amount: 35},
-    {  description: 'watermelon', Amount: 25}];
-
-const sumall = fruits.map(price => price.Amount).reduce((previousValue,currentValue)=> previousValue + currentValue,0) 
-
-console.log(sumall)

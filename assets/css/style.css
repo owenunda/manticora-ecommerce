@@ -465,6 +465,9 @@ main{
   color: var(--first-color);
   cursor: pointer;
 }
+.catError{
+  margin: 5rem;
+}
 @keyframes  img_ani{
   0% {
     transform: translateY( 0 );

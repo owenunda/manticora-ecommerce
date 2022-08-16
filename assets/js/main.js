@@ -152,15 +152,7 @@ function añadiendoCar() {
         const itemId = parseInt(e.target.parentElement.id)
         const selectedProducts = items.find( item => item.id === itemId )
 
-
-
-
-
-
-
-
-
-
+        
 
             if (cart.includes(selectedProducts) === false) {
                 selectedProducts.cantidad = 1
@@ -170,9 +162,7 @@ function añadiendoCar() {
                 selectedProducts.cantidad += 1
                 selectedProducts.SubPrice += selectedProducts.price
             }
-
-
-
+            
 // ============================total DE productos =============================== //
 const itemCount = document.getElementById("item__cout")
 const itemCount2 = document.getElementById("cart-counter")
@@ -188,8 +178,8 @@ precioTotal.textContent = totalPrecio
 
 
 
-//================ cart con los productos =============================//
 
+//================ cart con los productos =============================//
 function cartDeProductos(carArray) {
     let fragmentHTML = ``
     carArray.forEach( cartProduct  =>{
@@ -224,10 +214,13 @@ function cartDeProductos(carArray) {
 
 
 
+        
+        
+
 
 
         }) // fin del addEvent
-
+            
 
 
 
@@ -239,3 +232,12 @@ function cartDeProductos(carArray) {
 
 
 /* ====================================================================*/
+const main = document.querySelector(".main")
+const catError = document.getElementById("404")
+const buttonDiscover = document.getElementById("btn-discover")
+
+buttonDiscover.addEventListener("click", () =>{
+    main.classList.add("hide")
+    catError.classList.remove("hide")
+}
+)

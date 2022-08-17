@@ -1,84 +1,20 @@
+import {darkTheme} from  "./components/darkTheme.js"
+import {load} from "./components/load.js"
+import {menu} from "./components/menu.js"
+import {abriendoCartDeCarrito} from "./components/carCarrito.js"
+import {scroll} from "./components/scroll.js"
 
 document.addEventListener("DOMContentLoaded", () => {
     load()
     anadiendoItems(items)
+    darkTheme()
+    menu()
+    abriendoCartDeCarrito()
+    scroll()
 })
 
 
-/*======= carga del loader ============ */
-const loader = document.getElementById("loader")
-function load () {
-    setTimeout(()=>{
-    loader.classList.add("hide")
-    }, 3000)
-}
-/* ==========================================*/
 
-/*====== Dark mode =======*/
-const themeButton = document.getElementById("theme-button")
-
-themeButton.addEventListener("click", () => {
-    document.body.classList.toggle( "dark--theme" )
-    if(themeButton.classList.contains("bx-moon")){
-        themeButton.classList.replace("bx-moon", "bx-sun")
-    }else{
-        themeButton.classList.replace("bx-sun", "bx-moon")
-    }
-    
-})
-
-/* ==========================================*/
-
-/*======  carrito =======*/
-const cartOpen = document.getElementById("cart-shop")
-const cartClose = document.getElementById("close-cart")
-const cartContainer = document.getElementById("cart-container")
-
-cartOpen.addEventListener("click", () =>{
-    cartContainer.classList.add("container__show")
-})
-
-cartClose.addEventListener("click", () => {
-    cartContainer.classList.remove("container__show")
-})
-
-
-/*==================SCROLL====================*/ 
-const header = document.getElementById("header")
-
-window.addEventListener("scroll", ()=>{
-    if(window.scrollY >= 50){
-        header.classList.add("scroll-header")
-    }else{
-        header.classList.remove("scroll-header")
-    }
-})
-/*==========================================*/
-
-/*=========================== MENU ============================*/
-const menu = document.querySelector(".nav--menu")
-const menuOpen = document.getElementById("nav-toggle")
-const menuClose = document.getElementById("close--nav")
-const menuHome = document.getElementById("menu-home")
-const menuProducts = document.getElementById("menu-Products")
-
-    menuOpen.addEventListener("click", () => {
-        menu.classList.add("nav--menu__show")
-        cartOpen.classList.add("hide")
-    })
-    
-    
-    function cerrarMenu(close) {
-        close.addEventListener("click", () =>{
-            menu.classList.remove("nav--menu__show")
-            cartOpen.classList.remove("hide")
-        })
-    }
-    cerrarMenu(menuClose)
-    cerrarMenu(menuHome)
-    cerrarMenu(menuProducts)
-    
-/*===========================================================*/
 
 /*=============== AÑADIR PRODUCTOS ==================*/
 const items = [
@@ -129,7 +65,7 @@ function anadiendoItems(itemsArray){
         </article>` 
         })
         productsContent.innerHTML = fragmentHTML
-        añadiendoCar()
+        carrito()
 
 
 }
@@ -137,21 +73,19 @@ function anadiendoItems(itemsArray){
 
 
 /*================ añadiendo producto al carrito =============*/
-const cart = []
+
 const cartProductContainer = document.querySelector(".car__container")
 const carInfoVacio = document.querySelector(".cart__info")
+const cart = []
 
-
-
-
-function añadiendoCar() {
+function carrito() {
     const btnsCar = document.querySelectorAll(".products__button") // node list
     
     btnsCar.forEach( button => {
     button.addEventListener("click", e =>{
         const itemId = parseInt(e.target.parentElement.id)
-        const selectedProducts = items.find( item => item.id === itemId )
         
+        const selectedProducts = items.find( item => item.id === itemId )        
 
         // si el NO existe un producto dentro del carrito lo agrega 
         // si SI existe solo le aumenta su subprecio y cantidad
@@ -163,24 +97,20 @@ function añadiendoCar() {
                 selectedProducts.cantidad += 1
                 selectedProducts.SubPrice += selectedProducts.price
             }
-            
+
 // ============================total DE productos =============================== //
 const itemCount = document.getElementById("item__cout")
 const itemCount2 = document.getElementById("cart-counter")
 const totalCantidad = cart.map( Product => Product.cantidad ).reduce((previousValue,currentValue)=> previousValue + currentValue,0) 
 itemCount.textContent = totalCantidad
 itemCount2.textContent = totalCantidad
-// ============================total DE precio de producotos =============================== //
+
+// ============================total DE precio de productos =============================== //
 const precioTotal = document.getElementById("cart__total")
 const totalPrecio = cart.map( Product => Product.SubPrice ).reduce((previousValue,currentValue)=> previousValue + currentValue,0) 
 precioTotal.textContent = totalPrecio
-// ===========================================================================//
-// ========================= ELIMINANDO TODOS LOS ELEMENTOS ==================//
 
-
-
-
-//================ cart con los productos =============================//
+//================ mostrar productos =============================//
 function cartDeProductos(carArray) {
     let fragmentHTML = ``
     carArray.forEach( cartProduct  =>{
@@ -211,13 +141,19 @@ function cartDeProductos(carArray) {
     cartProductContainer.innerHTML = fragmentHTML
         
         }
-        cartDeProductos(cart)
+cartDeProductos(cart)
+
+// ========================= ELIMINANDO TODOS LOS ELEMENTOS ==================//
+
+
+
+
+
+// ==================================================================//
         }) // fin del addEventListener
     })  // fin del forEach
+
     
-
-}
-
+} // fin funcion
 
 
-/* ====================================================================*/

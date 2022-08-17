@@ -76,11 +76,11 @@ function anadiendoItems(itemsArray){
 
 const cartProductContainer = document.querySelector(".car__container")
 const carInfoVacio = document.querySelector(".cart__info")
-const cart = []
+
 
 function carrito() {
     const btnsCar = document.querySelectorAll(".products__button") // node list
-    
+    const cart = []
     btnsCar.forEach( button => {
     button.addEventListener("click", e =>{
         const itemId = parseInt(e.target.parentElement.id)
@@ -109,12 +109,16 @@ itemCount2.textContent = totalCantidad
 const precioTotal = document.getElementById("cart__total")
 const totalPrecio = cart.map( Product => Product.SubPrice ).reduce((previousValue,currentValue)=> previousValue + currentValue,0) 
 precioTotal.textContent = totalPrecio
+cartDeProductos(cart)
+        }) // fin del addEventListener
+    })  // fin del forEach
+} // fin funcion
 
 //================ mostrar productos =============================//
 function cartDeProductos(carArray) {
     let fragmentHTML = ``
-    carArray.forEach( cartProduct  =>{
-        fragmentHTML += `<article class="cart__product">
+    carArray.forEach( (cartProduct, index)  =>{
+        fragmentHTML += `<article id="${index}" class="cart__product">
         <div class="cart--product__img">
         <img class="cart__img" src=" ${cartProduct.image} " alt="${cartProduct.name}">
         </div>
@@ -141,19 +145,5 @@ function cartDeProductos(carArray) {
     cartProductContainer.innerHTML = fragmentHTML
         
         }
-cartDeProductos(cart)
 
-// ========================= ELIMINANDO TODOS LOS ELEMENTOS ==================//
-
-
-
-
-
-// ==================================================================//
-        }) // fin del addEventListener
-    })  // fin del forEach
-
-    
-} // fin funcion
-
-
+// ===================================== eliminando producs ==================//

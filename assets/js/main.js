@@ -151,9 +151,10 @@ function añadiendoCar() {
     button.addEventListener("click", e =>{
         const itemId = parseInt(e.target.parentElement.id)
         const selectedProducts = items.find( item => item.id === itemId )
-
         
 
+        // si el NO existe un producto dentro del carrito lo agrega 
+        // si SI existe solo le aumenta su subprecio y cantidad
             if (cart.includes(selectedProducts) === false) {
                 selectedProducts.cantidad = 1
                 selectedProducts.SubPrice = selectedProducts.price
@@ -169,7 +170,7 @@ const itemCount2 = document.getElementById("cart-counter")
 const totalCantidad = cart.map( Product => Product.cantidad ).reduce((previousValue,currentValue)=> previousValue + currentValue,0) 
 itemCount.textContent = totalCantidad
 itemCount2.textContent = totalCantidad
-// ============================total DE productos =============================== //
+// ============================total DE precio de producotos =============================== //
 const precioTotal = document.getElementById("cart__total")
 const totalPrecio = cart.map( Product => Product.SubPrice ).reduce((previousValue,currentValue)=> previousValue + currentValue,0) 
 precioTotal.textContent = totalPrecio
@@ -211,19 +212,7 @@ function cartDeProductos(carArray) {
         
         }
         cartDeProductos(cart)
-
-
-
-        
-        
-
-
-
-        }) // fin del addEvent
-            
-
-
-
+        }) // fin del addEventListener
     })  // fin del forEach
     
 
@@ -232,12 +221,3 @@ function cartDeProductos(carArray) {
 
 
 /* ====================================================================*/
-const main = document.querySelector(".main")
-const catError = document.getElementById("404")
-const buttonDiscover = document.getElementById("btn-discover")
-
-buttonDiscover.addEventListener("click", () =>{
-    main.classList.add("hide")
-    catError.classList.remove("hide")
-}
-)

@@ -44,8 +44,35 @@ const items = [
     },
 ]
 
-const productsContent = document.querySelector(".products__content")
+filterProductos(items)
+
+
+function filterProductos(itemsAray){
+const btnFilter = document.querySelectorAll(".products__item")
+
+btnFilter.forEach(button => {
+    button.addEventListener("click", e =>{
+        const buttonId = e.target.id
+        const filter = itemsAray.filter(items => items.category ===  buttonId )
+        if(buttonId !== "filterAll"){
+            anadiendoItems(filter)
+        }else{
+            anadiendoItems(itemsAray)
+        }
+        
+
+    })
+})
+
+
+
+
+}
+
+
+
 function anadiendoItems(itemsArray){
+const productsContent = document.querySelector(".products__content")
     let fragmentHTML = ``
         itemsArray.map( item =>{
             fragmentHTML += `<article class="products__car ${item.category}">
@@ -121,8 +148,6 @@ itemCount2.textContent = totalCantidad
 const precioTotal = document.getElementById("cart__total")
 const totalPrecio = cart.map( Product => Product.SubPrice ).reduce((previousValue,currentValue)=> previousValue + currentValue,0) 
 precioTotal.textContent = totalPrecio
-
-
 
 
 cartDeProductos(cart)

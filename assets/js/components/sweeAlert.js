@@ -1,3 +1,0 @@
-swal.fire({
-    title: "bienvenido"
-})

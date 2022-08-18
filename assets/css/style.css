@@ -555,7 +555,7 @@ main{
 .bx-grid-alt{
   display: none;
 }
-.nav--close{
+.closenav{
   display: none;
 }
 .nav--list{
@@ -584,7 +584,7 @@ main{
     column-gap: 80px;
   }
   .footer--container{
-    grid-template-columns: repeat(4, 300px);
+    grid-template-columns: repeat(4, 200px);
   }
 }
 @media screen and (min-width: 1100px) {

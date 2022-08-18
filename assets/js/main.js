@@ -76,11 +76,11 @@ function anadiendoItems(itemsArray){
 
 const cartProductContainer = document.querySelector(".car__container")
 const carInfoVacio = document.querySelector(".cart__info")
-
+const cart = []
 
 function carrito() {
     const btnsCar = document.querySelectorAll(".products__button") // node list
-    const cart = []
+
     btnsCar.forEach( button => {
     button.addEventListener("click", e =>{
         const itemId = parseInt(e.target.parentElement.id)
@@ -93,11 +93,23 @@ function carrito() {
                 selectedProducts.cantidad = 1
                 selectedProducts.SubPrice = selectedProducts.price
                 cart.push(selectedProducts)
-            }else if(cart.includes(selectedProducts) === true){
-                selectedProducts.cantidad += 1
+            }else if(selectedProducts.cantidad !== selectedProducts.quantity){
+                selectedProducts.cantidad++
                 selectedProducts.SubPrice += selectedProducts.price
             }
-
+            if (selectedProducts.cantidad === selectedProducts.quantity) {
+                swal.fire({
+                    text: "¡ups! se nos acabaron las unidades de este producto",
+                    icon: "error",
+                    with: "50%",
+                    backdrop: true,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    toast: true,
+                    position: "top",
+                    confirmButtonColor: "red"
+                })
+            }
 // ============================total DE productos =============================== //
 const itemCount = document.getElementById("item__cout")
 const itemCount2 = document.getElementById("cart-counter")
@@ -109,10 +121,15 @@ itemCount2.textContent = totalCantidad
 const precioTotal = document.getElementById("cart__total")
 const totalPrecio = cart.map( Product => Product.SubPrice ).reduce((previousValue,currentValue)=> previousValue + currentValue,0) 
 precioTotal.textContent = totalPrecio
+
+
+
+
 cartDeProductos(cart)
         }) // fin del addEventListener
     })  // fin del forEach
-} // fin funcion
+
+} // fin funcion    
 
 //================ mostrar productos =============================//
 function cartDeProductos(carArray) {
@@ -146,4 +163,4 @@ function cartDeProductos(carArray) {
         
         }
 
-// ===================================== eliminando producs ==================//
+// ===================================================================

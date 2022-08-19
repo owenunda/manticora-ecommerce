@@ -63,10 +63,8 @@ const productsContent = document.querySelector(".products__content")
         })
         productsContent.innerHTML = fragmentHTML
         carrito()
-}
 
-
-
+    }
 /*================ añadiendo producto al carrito =============*/
 
 
@@ -82,15 +80,18 @@ function carrito() {
 
 
 
-        DelectProduct(cart)
         // si el NO existe un producto dentro del carrito lo agrega 
         // si SI existe solo le aumenta su subprecio y cantidad
             if (cart.includes(selectedProducts) === false) {
                 selectedProducts.cantidad = 1
+                selectedProducts.subPrecio = selectedProducts.price
                 cart.push(selectedProducts)
             }else if(selectedProducts.cantidad !== selectedProducts.quantity){
                 selectedProducts.cantidad++
+                selectedProducts.subPrecio += selectedProducts.price
             }
+
+            // limite de productos
             if (selectedProducts.cantidad === selectedProducts.quantity) {
                 swal.fire({
                     text: "¡ups! se nos acabaron las unidades de este producto",
@@ -106,23 +107,30 @@ function carrito() {
             }
 
 
+
+
+DelectProduct(cart)
 muestraTotalDeCantidadDeItems(cart)
+
 total(cart)
 cartDeProductos(cart)
 
         }) // fin del addEventListener
     })  // fin del forEach
-
 } // fin funcion    
 
 
 
 //================ mostrar productos =============================//
 function cartDeProductos(carArray) {
-    const cartProductContainer = document.querySelector(".car__container")
+    const cartProductContainer = document.querySelector(".cart__info--product")
     const carInfoVacio = document.querySelector(".cart__info")
-    
-    
+
+    carInfoVacio.classList.add("hide")
+
+
+
+
         let fragmentHTML = ``
         carArray.forEach( (cartProduct, index)  =>{
             fragmentHTML += `<article id="${index}" class="cart__product">
@@ -133,7 +141,7 @@ function cartDeProductos(carArray) {
             <h3 class="cart--detalles__tittle">${cartProduct.name}</h3>
             <span class="cart--detalles__stock">existencias: ${cartProduct.quantity} | <span class="cart--detalles__precio">$${cartProduct.price}</span>
             </span>
-            <span class="cart--detalles__subtotal">subtotal: $0</span>
+            <span class="cart--detalles__subtotal">subtotal: $${cartProduct.subPrecio}</span>
             <div class="cart__amount">
                         <div class="cart__amount-content">
                         <span class="cart__amount__box">
@@ -158,6 +166,7 @@ function cartDeProductos(carArray) {
 function DelectProduct(cart) {
     const btnDelect = document.querySelectorAll(".cart__amount-trash")
     const btnDelectCheckout = document.getElementById("checkout")
+    const carInfoVacio = document.querySelector(".cart__info")
 
     btnDelect.forEach(button => {
         button.addEventListener("click", e => {
@@ -169,7 +178,7 @@ function DelectProduct(cart) {
 
     btnDelectCheckout.addEventListener("click", () =>{
         cart.splice(0, cart.length)
-        cart.cantidad = 0
+        carInfoVacio.classList.remove("hide")
         cartDeProductos(cart)
     })
 
@@ -186,4 +195,6 @@ const totalCantidad = cart.map( Product => Product.cantidad ).reduce((acc,cantid
 itemCount.textContent = totalCantidad
 itemCount2.textContent = totalCantidad
 }
+
+
 

@@ -195,7 +195,7 @@ body{
   margin-bottom: 2.5rem;
   font-size: 1.5rem;
 }
-.car__container{
+.cart__info--product{
   display: grid;
   row-gap: 3rem;
   max-height: 400px;

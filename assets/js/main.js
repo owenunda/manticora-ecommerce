@@ -17,8 +17,6 @@ document.addEventListener("DOMContentLoaded", () => {
 })
 
 
-
-
 /*=============== AÑADIR PRODUCTOS ==================*/
 
 
@@ -63,7 +61,7 @@ const productsContent = document.querySelector(".products__content")
         })
         productsContent.innerHTML = fragmentHTML
         carrito()
-
+        DelectProduct(cart)
     }
 /*================ añadiendo producto al carrito =============*/
 
